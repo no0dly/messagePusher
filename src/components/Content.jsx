@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 
-import Filters      from './Filters';
-import Customers    from './Customers';
-import Exclusion    from './Exclusion';
-import Form         from './Form';
+import Filters      from './filters/Filters';
+import Customers    from './customers/Customers';
+import Exclusion    from './exclusion/Exclusion';
+import Form         from './form/Form';
 
 
 export class Content extends Component {

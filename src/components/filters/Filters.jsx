@@ -1,27 +1,23 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 
+import FiltersList from './FiltersList';
+
 export class Filters extends Component {
+
     render() {
         return (
             <div>
-                <Title>
-                    <TitleText className='title is-4'>
-                        Filters
-                    </TitleText>
-
-                    
+                <Title className='title is-4'>
+                    Filters
                 </Title>
+                <FiltersList/>
             </div>
         )
     }
 }
 
-const Title = styled.div`
-    margin-bottom: 10px;
-`;
-
-const TitleText = styled.h2`
+const Title = styled.h2`
     text-align: center;
 `;
 
