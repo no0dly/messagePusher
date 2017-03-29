@@ -7,7 +7,7 @@ export class Exclusion extends Component {
     render() {
         return (
             <div>
-                <Title className="title is-4">
+                <Title className="title is-5">
                     Exclusion
                 </Title>
                 <ExclusionTable/>

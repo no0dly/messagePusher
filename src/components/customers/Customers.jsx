@@ -7,7 +7,7 @@ export class Customers extends Component {
     render() {
         return (
             <div>
-                <Title className="title is-4">
+                <Title className="title is-5">
                     Customers
                 </Title>
                 <CustomersTable/>

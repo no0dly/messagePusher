@@ -2,14 +2,12 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import Tooltip from 'rc-tooltip';
 import Slider from 'rc-slider';
 
 import 'rc-slider/assets/index.css';
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
-const Handle = Slider.Handle;
 
 const FiltersSlider = (props) => {
     const { title, min, max } = props;
@@ -17,28 +15,28 @@ const FiltersSlider = (props) => {
         <Wrap>
             <Title>{title}</Title>
             <Content className="columns">
-                <div className="column is-2">
+                <SpinText className="column is-2">
                     {min}
-                </div>
+                </SpinText>
                 <div className="column is-7">
                     <Range min={min} max={max} defaultValue={[3, 10]} tipFormatter={value => `${value}`} />
                 </div>
-                <div className="column is-3">
+                <SpinText className="column is-3">
                     {max}
-                </div>
+                </SpinText>
             </Content>
             <div className="columns">
                 <div className="column is-5 is-offset-1">
                     <div className="field">
                         <div className="control">
-                            <input className="input" type="text" value={min}/>
+                            <LeftInput className="input is-small" type="text" placeholder={min}/>
                         </div>
                     </div>
                 </div>
                 <div className="column is-5">
                     <div className="field">
                         <div className="control">
-                            <input className="input" type="text" value={max}/>
+                            <input className="input is-small" type="text" placeholder={max}/>
                         </div>
                     </div>
                 </div>
@@ -48,17 +46,29 @@ const FiltersSlider = (props) => {
 }
 
 const Wrap = styled.div`
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: center;
 `;
 
 const Title = styled.p`
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    font-size: 0.75rem;
 `;
 
 const Content = styled.div`
     align-items: center;
+    &.columns:not(:last-child) {
+        margin-bottom: 0;
+    }
+`;
+
+const LeftInput = styled.input`
+    text-align: right;
+`;
+
+const SpinText = styled.div`
+    font-size: 0.75rem;
 `;
 
 

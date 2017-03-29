@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import styled from 'styled-components';
+
 import FiltersSlider from './FiltersSlider';
 
 export class FiltersList extends Component {
@@ -48,22 +50,31 @@ export class FiltersList extends Component {
             <div>
                 {renderSliders()}
                 <div className="field">
-                    <p className="control">
-                        <label className="radio">
+                    <Control className="control">
+                        <Label className="radio">
                             <input type="radio" name="question"/>
                             only sell trades
-                        </label>
-                        <label className="radio">
+                        </Label>
+                        <Label className="radio">
                             <input type="radio" name="question"/>
                             only buy trades
-                        </label>
-                    </p>
+                        </Label>
+                    </Control>
                 </div>
 
             </div>
         )
     }
 }
+
+const Label = styled.label`
+    font-size: 0.75rem;
+`;
+const Control = styled.p`
+    &.control {
+        text-align: center;
+    }
+`;
 
 
 export default FiltersList;

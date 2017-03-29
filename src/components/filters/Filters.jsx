@@ -8,7 +8,7 @@ export class Filters extends Component {
     render() {
         return (
             <div>
-                <Title className='title is-4'>
+                <Title className='title is-5'>
                     Filters
                 </Title>
                 <FiltersList/>
@@ -19,6 +19,9 @@ export class Filters extends Component {
 
 const Title = styled.h2`
     text-align: center;
+    &.title:not(:last-child) {
+        margin-bottom: 10px;
+    }
 `;
 
 export default Filters;
