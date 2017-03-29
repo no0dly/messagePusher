@@ -1,17 +1,25 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
 import styled from 'styled-components';
 
 import ExclusionItem from './ExclusionItem';
+import * as actions from '../../actions';
 
 export class ExclusionTable extends Component {
+    onClick(username, e) {
+        e.preventDefault();
+        const { dispatch } = this.props;
 
+        dispatch(actions.exclusionRemove(username));
+    }
     render() {
-        // const renderCell = () => {
-        //     const { filters } = this.state;
-        //     return filters.map( (filter, idx) => {
-        //         return <FiltersSlider key={idx} {...filter}/>
-        //     });
-        // }
+        const renderExclusion = () => {
+            const { exclusions } = this.props;
+            return exclusions.map( (exclusion, idx) => {
+                return <ExclusionItem key={idx} username={exclusion} onClick={this.onClick.bind(this, exclusion)}/>
+            });
+        }
         return (
             <div>
                 <Table className="table is-bordered is-striped">
@@ -28,8 +36,7 @@ export class ExclusionTable extends Component {
                         </tr>
                     </tfoot>
                     <tbody>
-                        <ExclusionItem/>
-                        <ExclusionItem/>
+                        {renderExclusion()}
                   </tbody>
               </Table>
             </div>
@@ -47,4 +54,10 @@ const Table = styled.table`
     }
 `;
 
-export default ExclusionTable;
+export default connect(
+    (state) => {
+        return {
+            exclusions: state.exclusions
+        }
+    }
+)(ExclusionTable);

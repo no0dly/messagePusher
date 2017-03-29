@@ -1,20 +1,25 @@
 import React from 'react';
 
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 const CustomersItem = (props) => {
+    const username              = props.username;
+    const daysSinceFirstTrade   = props.days_since_first_trade;
+    const daysSinceLastTrade    = props.days_since_last_trade;
+    const numberOfRecentTrades  = props.number_of_recent_trades;
+    const averageAmountA        = props.average_amount_a;
+    const averageAmountB        = props.average_amount_b;
+    const onClickHandler        = props.onClick;
 
     return (
         <tr>
-            <td>
-                <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
-            </td>
-            <td>38</td>
-            <td>23</td>
-            <td>12</td>
-            <td>3</td>
-            <td>3</td>
-            <td><a href="#">Exclude</a></td>
+            <td>{username}</td>
+            <td>{daysSinceFirstTrade}</td>
+            <td>{daysSinceLastTrade}</td>
+            <td>{numberOfRecentTrades}</td>
+            <td>{averageAmountA}</td>
+            <td>{averageAmountB}</td>
+            <td><a onClick={onClickHandler} href="#">Exclude</a></td>
         </tr>
     );
 }

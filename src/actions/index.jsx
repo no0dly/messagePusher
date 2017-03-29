@@ -1,14 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+// export const startGetData (data) => {
+//     return (dispatch, getState) => {
+//
+//     }
+// }
 
-import router from './router';
+export const getData = (data) => {
+    return {
+        type: 'GET_DATA',
+        data
+    }
+}
 
-const store = require('./store/configureStore').configure();
+export const exclusionAdd = (username) => {
+    return {
+        type: 'EXCLUSION_ADD',
+        username
+    }
+}
 
-ReactDOM.render(
-    <Provider store={store}>
-        {router}
-    </Provider>,
-    document.getElementById('root')
-);
+export const exclusionRemove = (username) => {
+    return {
+        type: 'EXCLUSION_REMOVE',
+        username
+    }
+}

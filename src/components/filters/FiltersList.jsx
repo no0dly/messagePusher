@@ -1,47 +1,14 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import styled from 'styled-components';
 
 import FiltersSlider from './FiltersSlider';
 
 export class FiltersList extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            filters: [
-                {
-                    title: 'Days Since first trade',
-                    min: 0,
-                    max: 100
-                },
-                {
-                    title: 'Days Since first trade',
-                    min: 0,
-                    max: 21
-                },
-                {
-                    title: 'Number of trades within last 30 days',
-                    min: 0,
-                    max: 10
-                },
-                {
-                    title: 'Average trade amount A',
-                    min: 0,
-                    max: 500
-                },
-                {
-                    title: 'Average trade amount B',
-                    min: 0,
-                    max: 1000
-                },
-            ]
-
-        }
-    }
     render() {
         const renderSliders = () => {
-            const { filters } = this.state;
+            const { filters } = this.props;
             return filters.map( (filter, idx) => {
                 return <FiltersSlider key={idx} {...filter}/>
             });
@@ -76,5 +43,10 @@ const Control = styled.p`
     }
 `;
 
-
-export default FiltersList;
+export default connect(
+    (state)=> {
+        return {
+            filters: state.data.filters
+        }
+    }
+)(FiltersList);

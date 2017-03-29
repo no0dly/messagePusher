@@ -19,7 +19,7 @@ const FiltersSlider = (props) => {
                     {min}
                 </SpinText>
                 <div className="column is-7">
-                    <Range min={min} max={max} defaultValue={[3, 10]} tipFormatter={value => `${value}`} />
+                    <Range min={min} max={max} defaultValue={[min, max]} tipFormatter={value => `${value}`} />
                 </div>
                 <SpinText className="column is-3">
                     {max}
@@ -29,14 +29,14 @@ const FiltersSlider = (props) => {
                 <div className="column is-5 is-offset-1">
                     <div className="field">
                         <div className="control">
-                            <LeftInput className="input is-small" type="text" placeholder={min}/>
+                            <LeftInput defaultValue={min} className="input is-small" type="text" placeholder='0'/>
                         </div>
                     </div>
                 </div>
                 <div className="column is-5">
                     <div className="field">
                         <div className="control">
-                            <input className="input is-small" type="text" placeholder={max}/>
+                            <input defaultValue={max} className="input is-small" type="text" placeholder='100'/>
                         </div>
                     </div>
                 </div>

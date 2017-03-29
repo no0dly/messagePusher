@@ -1,17 +1,28 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
 import styled from 'styled-components';
 
 import CustomersItem from './CustomersItem';
+import * as actions from '../../actions';
+import pusherAPI from '../../api';
 
 export class CustomersTable extends Component {
+    onClick(username, e) {
+        e.preventDefault();
+        const { dispatch } = this.props;
+
+        dispatch(actions.exclusionAdd(username));
+    }
 
     render() {
-        // const renderCell = () => {
-        //     const { filters } = this.state;
-        //     return filters.map( (filter, idx) => {
-        //         return <FiltersSlider key={idx} {...filter}/>
-        //     });
-        // }
+        const renderCustomer = () => {
+            const { customers, exclusions } = this.props;
+
+            return pusherAPI.filter(customers, exclusions).map( (customer, idx) => {
+                return <CustomersItem key={idx} {...customer} onClick={this.onClick.bind(this, customer.username)}/>
+            });
+        }
         return (
             <div>
                 <Table className="table is-bordered is-striped">
@@ -38,8 +49,7 @@ export class CustomersTable extends Component {
                         </tr>
                     </tfoot>
                     <tbody>
-                        <CustomersItem/>
-                        <CustomersItem/>
+                        {renderCustomer()}
                   </tbody>
               </Table>
             </div>
@@ -57,4 +67,11 @@ const Table = styled.table`
     }
 `;
 
-export default CustomersTable;
+export default connect(
+    (state) => {
+        return {
+            customers: state.data.customers,
+            exclusions: state.exclusions
+        }
+    }
+)(CustomersTable);

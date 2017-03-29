@@ -1,17 +1,16 @@
 import React from 'react';
 
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
-const ExcludeItem = (props) => {
-
+const ExclusionItem = (props) => {
+    const { username } = props;
+    const onClickHandler = props.onClick;
     return (
         <tr>
-            <td>
-                <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
-            </td>
-            <td><a href="#">Exclude</a></td>
+            <td>{username}</td>
+            <td><a onClick={onClickHandler} href="#">Remove</a></td>
         </tr>
     );
 }
 
-export default ExcludeItem;
+export default ExclusionItem;
