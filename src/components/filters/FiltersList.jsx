@@ -4,13 +4,17 @@ import {connect} from 'react-redux';
 import styled from 'styled-components';
 
 import FiltersSlider from './FiltersSlider';
+import * as actions from '../../actions';
 
 export class FiltersList extends Component {
+    onChangeHandler(e) {
+
+    }
     render() {
         const renderSliders = () => {
             const { filters } = this.props;
             return filters.map( (filter, idx) => {
-                return <FiltersSlider key={idx} {...filter}/>
+                return <FiltersSlider onChange={this.onChangeHandler.bind(this)} key={idx} {...filter}/>
             });
         }
         return (

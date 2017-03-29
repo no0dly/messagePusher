@@ -8,7 +8,7 @@ import * as actions from '../../actions';
 import pusherAPI from '../../api';
 
 export class CustomersTable extends Component {
-    onClick(username, e) {
+    onClickHandler(username, e) {
         e.preventDefault();
         const { dispatch } = this.props;
 
@@ -20,7 +20,7 @@ export class CustomersTable extends Component {
             const { customers, exclusions } = this.props;
 
             return pusherAPI.filter(customers, exclusions).map( (customer, idx) => {
-                return <CustomersItem key={idx} {...customer} onClick={this.onClick.bind(this, customer.username)}/>
+                return <CustomersItem key={idx} {...customer} onClick={this.onClickHandler.bind(this, customer.username)}/>
             });
         }
         return (

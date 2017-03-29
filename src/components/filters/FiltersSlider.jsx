@@ -10,7 +10,7 @@ const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
 const FiltersSlider = (props) => {
-    const { title, min, max } = props;
+    const { title, min, max, onChange } = props;
     return (
         <Wrap>
             <Title>{title}</Title>
@@ -19,7 +19,7 @@ const FiltersSlider = (props) => {
                     {min}
                 </SpinText>
                 <div className="column is-7">
-                    <Range min={min} max={max} defaultValue={[min, max]} tipFormatter={value => `${value}`} />
+                    <Range min={min} max={max} defaultValue={[min, max]} onChange={onChange} tipFormatter={value => `${value}`} />
                 </div>
                 <SpinText className="column is-3">
                     {max}

@@ -9,7 +9,7 @@ const CustomersItem = (props) => {
     const numberOfRecentTrades  = props.number_of_recent_trades;
     const averageAmountA        = props.average_amount_a;
     const averageAmountB        = props.average_amount_b;
-    const onClickHandler        = props.onClick;
+    const onClick               = props.onClick;
 
     return (
         <tr>
@@ -19,7 +19,7 @@ const CustomersItem = (props) => {
             <td>{numberOfRecentTrades}</td>
             <td>{averageAmountA}</td>
             <td>{averageAmountB}</td>
-            <td><a onClick={onClickHandler} href="#">Exclude</a></td>
+            <td><a onClick={onClick} href="#">Exclude</a></td>
         </tr>
     );
 }

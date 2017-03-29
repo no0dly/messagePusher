@@ -7,7 +7,7 @@ import ExclusionItem from './ExclusionItem';
 import * as actions from '../../actions';
 
 export class ExclusionTable extends Component {
-    onClick(username, e) {
+    onClickHandler(username, e) {
         e.preventDefault();
         const { dispatch } = this.props;
 
@@ -17,7 +17,7 @@ export class ExclusionTable extends Component {
         const renderExclusion = () => {
             const { exclusions } = this.props;
             return exclusions.map( (exclusion, idx) => {
-                return <ExclusionItem key={idx} username={exclusion} onClick={this.onClick.bind(this, exclusion)}/>
+                return <ExclusionItem key={idx} username={exclusion} onClick={this.onClickHandler.bind(this, exclusion)}/>
             });
         }
         return (
