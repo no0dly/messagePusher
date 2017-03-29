@@ -11,6 +11,15 @@ export const getData = (data) => {
     }
 }
 
+export const filterChange = (min, max, idx) => {
+    return {
+        type: 'FILTER_CHANGE',
+        min,
+        max,
+        idx
+    }
+}
+
 export const exclusionAdd = (username) => {
     return {
         type: 'EXCLUSION_ADD',

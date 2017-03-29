@@ -17,9 +17,9 @@ export class CustomersTable extends Component {
 
     render() {
         const renderCustomer = () => {
-            const { customers, exclusions } = this.props;
+            const { customers, exclusions, filters } = this.props;
 
-            return pusherAPI.filter(customers, exclusions).map( (customer, idx) => {
+            return pusherAPI.filter(customers, exclusions, filters).map( (customer, idx) => {
                 return <CustomersItem key={idx} {...customer} onClick={this.onClickHandler.bind(this, customer.username)}/>
             });
         }
@@ -71,7 +71,8 @@ export default connect(
     (state) => {
         return {
             customers: state.data.customers,
-            exclusions: state.exclusions
+            exclusions: state.exclusions,
+            filters: state.data.filters
         }
     }
 )(CustomersTable);

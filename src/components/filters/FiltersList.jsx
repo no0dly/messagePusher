@@ -7,14 +7,16 @@ import FiltersSlider from './FiltersSlider';
 import * as actions from '../../actions';
 
 export class FiltersList extends Component {
-    onChangeHandler(e) {
+    onChangeHandler(idx, e) {
+        const {dispatch} = this.props;
 
+        dispatch(actions.filterChange(e[0], e[1], idx));
     }
     render() {
         const renderSliders = () => {
             const { filters } = this.props;
             return filters.map( (filter, idx) => {
-                return <FiltersSlider onChange={this.onChangeHandler.bind(this)} key={idx} {...filter}/>
+                return <FiltersSlider onChange={this.onChangeHandler.bind(this, idx)} key={idx} {...filter}/>
             });
         }
         return (

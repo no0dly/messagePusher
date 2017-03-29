@@ -2,6 +2,14 @@ export const dataReducer = (state={}, action) => {
     switch (action.type) {
         case 'GET_DATA':
             return action.data;
+
+        case 'FILTER_CHANGE':
+            let newState = state;
+            newState.filters[action.idx].min = action.min;
+            newState.filters[action.idx].max = action.max;
+
+            return newState;
+
         default:
             return state;
     }
