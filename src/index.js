@@ -64,6 +64,8 @@ const data = {
 
 store.dispatch(actions.getData(data));
 
+store.dispatch(actions.filtersSet(store.getState().data.filters));
+
 ReactDOM.render(
     <Provider store={store}>
         {router}

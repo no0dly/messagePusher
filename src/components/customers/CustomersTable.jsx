@@ -15,10 +15,13 @@ export class CustomersTable extends Component {
         dispatch(actions.exclusionAdd(username));
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        console.log('123',prevProps, prevState);
+    }
+ 
     render() {
         const renderCustomer = () => {
             const { customers, exclusions, filters } = this.props;
-
             return pusherAPI.filter(customers, exclusions, filters).map( (customer, idx) => {
                 return <CustomersItem key={idx} {...customer} onClick={this.onClickHandler.bind(this, customer.username)}/>
             });
@@ -69,10 +72,11 @@ const Table = styled.table`
 
 export default connect(
     (state) => {
+        console.log('does this run when you change filters');
         return {
             customers: state.data.customers,
             exclusions: state.exclusions,
-            filters: state.data.filters
+            filters: state.filters
         }
     }
 )(CustomersTable);

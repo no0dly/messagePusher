@@ -31,7 +31,7 @@ module.exports = {
             }
             return true;
         });
-
+        console.log('rerender');
         return filteredCustomers;
     }
 }

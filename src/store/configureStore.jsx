@@ -1,12 +1,13 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import {dataReducer, exclusionsReducer} from '../reducers';
+import {dataReducer, exclusionsReducer, filtersReducer } from '../reducers';
 
 export const configure = ( initialState = {} ) => {
     var reducer = redux.combineReducers({
         data: dataReducer,
-        exclusions: exclusionsReducer
+        exclusions: exclusionsReducer,
+        filters: filtersReducer
     });
 
     var store = redux.createStore(reducer, initialState, redux.compose(

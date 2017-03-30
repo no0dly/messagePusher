@@ -33,3 +33,19 @@ export const exclusionRemove = (username) => {
         username
     }
 }
+
+export const filtersSet = (filters) => {
+    return {
+        type: 'FILTERS_SET',
+        filters
+    }
+}
+
+export const filterUpdate = (min, max, idx) => {
+    return {
+        type: 'FILTERS_UPDATE',
+        min,
+        max,
+        idx
+    }
+}

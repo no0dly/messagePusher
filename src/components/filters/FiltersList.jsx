@@ -9,14 +9,14 @@ import * as actions from '../../actions';
 export class FiltersList extends Component {
     onChangeHandler(idx, e) {
         const {dispatch} = this.props;
-
-        dispatch(actions.filterChange(e[0], e[1], idx));
+        console.log(e[0], e[1], idx);
+        dispatch(actions.filterUpdate(e[0], e[1], idx));
     }
     render() {
         const renderSliders = () => {
-            const { filters } = this.props;
-            return filters.map( (filter, idx) => {
-                return <FiltersSlider onChange={this.onChangeHandler.bind(this, idx)} key={idx} {...filter}/>
+            const { data, filters } = this.props;
+            return data.map( (filter, idx) => {
+                return <FiltersSlider onChange={this.onChangeHandler.bind(this, idx)} key={idx} defaultMin={filters[idx].min} defaultMax={filters[idx].max} {...filter}/>
             });
         }
         return (
@@ -52,7 +52,8 @@ const Control = styled.p`
 export default connect(
     (state)=> {
         return {
-            filters: state.data.filters
+            data: state.data.filters,
+            filters: state.filters
         }
     }
 )(FiltersList);

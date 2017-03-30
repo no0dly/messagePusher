@@ -10,33 +10,34 @@ const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
 const FiltersSlider = (props) => {
-    const { title, min, max, onChange } = props;
+    const { title, min, max, onChange, defaultMin, defaultMax } = props;
+
     return (
         <Wrap>
             <Title>{title}</Title>
             <Content className="columns">
                 <SpinText className="column is-2">
-                    {min}
+                    {defaultMin}
                 </SpinText>
                 <div className="column is-7">
-                    <Range min={min} max={max} defaultValue={[min, max]} onChange={onChange} tipFormatter={value => `${value}`} />
+                    <Range min={min} max={max} defaultValue={[defaultMin, defaultMax]} onChange={onChange} tipFormatter={value => `${value}`} />
                 </div>
                 <SpinText className="column is-3">
-                    {max}
+                    {defaultMax}
                 </SpinText>
             </Content>
             <div className="columns">
                 <div className="column is-5 is-offset-1">
                     <div className="field">
                         <div className="control">
-                            <LeftInput defaultValue={min} className="input is-small" type="text" placeholder='0'/>
+                            <LeftInput defaultValue={defaultMin} className="input is-small" type="text" placeholder='0'/>
                         </div>
                     </div>
                 </div>
                 <div className="column is-5">
                     <div className="field">
                         <div className="control">
-                            <input defaultValue={max} className="input is-small" type="text" placeholder='100'/>
+                            <input defaultValue={defaultMax} className="input is-small" type="text" placeholder='100'/>
                         </div>
                     </div>
                 </div>
