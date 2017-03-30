@@ -10,15 +10,17 @@ import pusherAPI from '../../api';
 export class CustomersTable extends Component {
     onClickHandler(username, e) {
         e.preventDefault();
-        const { dispatch } = this.props;
+        const { dispatch, exclusions } = this.props;
 
         dispatch(actions.exclusionAdd(username));
+
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log('123',prevProps, prevState);
+    componentDidUpdate() {
+        const { exclusions } = this.props;
+        pusherAPI.storageExclusionsSet(exclusions);
     }
- 
+
     render() {
         const renderCustomer = () => {
             const { customers, exclusions, filters } = this.props;
@@ -72,7 +74,6 @@ const Table = styled.table`
 
 export default connect(
     (state) => {
-        console.log('does this run when you change filters');
         return {
             customers: state.data.customers,
             exclusions: state.exclusions,

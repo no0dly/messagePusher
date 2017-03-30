@@ -4,20 +4,27 @@ import {connect} from 'react-redux';
 import styled from 'styled-components';
 
 import FormMessage from './FormMessage';
+import pusherAPI from '../../api';
 
 export class Form extends Component {
+    onSubmit(e) {
+        e.preventDefault();
+
+        console.log(pusherAPI.fetchFormData(this.form));
+    }
+
     render() {
         const {messageOne, messageTwo} = this.props;
 
         return (
 
-            <form action="#">
+            <form ref={(form) => this.form = form} action="#" onSubmit={this.onSubmit.bind(this)}>
                 <Wrap className="columns">
                     <div className="column is-5">
-                        <FormMessage title="message 1" text={messageOne}/>
+                        <FormMessage id="messageOne" title="message 1" text={messageOne}/>
                     </div>
                     <div className="column is-5">
-                        <FormMessage title="message 2" text={messageTwo}/>
+                        <FormMessage id="messageTwo" title="message 2" text={messageTwo}/>
                     </div>
                     <div className="column is-2">
                         <input className="button is-primary is-large" type="submit"/>

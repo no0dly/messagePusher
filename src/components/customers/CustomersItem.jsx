@@ -13,7 +13,7 @@ const CustomersItem = (props) => {
 
     return (
         <tr>
-            <td>{username}</td>
+            <td className="customer">{username}</td>
             <td>{daysSinceFirstTrade}</td>
             <td>{daysSinceLastTrade}</td>
             <td>{numberOfRecentTrades}</td>

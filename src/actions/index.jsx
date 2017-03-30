@@ -49,3 +49,19 @@ export const filterUpdate = (min, max, idx) => {
         idx
     }
 }
+
+export const filterUpdateMin = (min, idx) => {
+    return {
+        type: 'FILTERS_UPDATE_MIN',
+        min,
+        idx
+    }
+}
+
+export const filterUpdateMax = ( max, idx) => {
+    return {
+        type: 'FILTERS_UPDATE_MAX',
+        max,
+        idx
+    }
+}

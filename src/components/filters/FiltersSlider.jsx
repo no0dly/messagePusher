@@ -1,49 +1,74 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 import styled from 'styled-components';
 
 import Slider from 'rc-slider';
+import * as actions from '../../actions';
 
 import 'rc-slider/assets/index.css';
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
-const FiltersSlider = (props) => {
-    const { title, min, max, onChange, defaultMin, defaultMax } = props;
 
-    return (
-        <Wrap>
-            <Title>{title}</Title>
-            <Content className="columns">
-                <SpinText className="column is-2">
-                    {defaultMin}
-                </SpinText>
-                <div className="column is-7">
-                    <Range min={min} max={max} defaultValue={[defaultMin, defaultMax]} onChange={onChange} tipFormatter={value => `${value}`} />
-                </div>
-                <SpinText className="column is-3">
-                    {defaultMax}
-                </SpinText>
-            </Content>
-            <div className="columns">
-                <div className="column is-5 is-offset-1">
-                    <div className="field">
-                        <div className="control">
-                            <LeftInput defaultValue={defaultMin} className="input is-small" type="text" placeholder='0'/>
+export class FiltersSlider extends Component {
+    onChange(e) {
+        const {dispatch, id} = this.props;
+
+        dispatch(actions.filterUpdate(e[0], e[1], id));
+    }
+    onChangeInput(input, e) {
+        const {dispatch, id} = this.props;
+
+        const value = parseInt(e.target.value);
+
+        if(input === 'min') {
+            dispatch(actions.filterUpdateMin( value, id));
+        } else {
+            dispatch(actions.filterUpdateMax( value, id));
+        }
+
+    }
+
+    render() {
+        const { title, min, max, id } = this.props;
+        const newMin = this.props.filters[id].min;
+        const newMax = this.props.filters[id].max;
+
+        return (
+            <Wrap>
+                <Title>{title}</Title>
+                <Content className="columns">
+                    <SpinText className="column is-2">
+                        {newMin}
+                    </SpinText>
+                    <div className="column is-7">
+                        <Range min={min} max={max} defaultValue={[min, max]} onChange={this.onChange.bind(this)} tipFormatter={value => `${value}`}  value={[newMin, newMax]} />
+                    </div>
+                    <SpinText className="column is-3">
+                        {newMax}
+                    </SpinText>
+                </Content>
+                <div className="columns">
+                    <div className="column is-5 is-offset-1">
+                        <div className="field">
+                            <LeftInput className="control">
+                                <input value={newMin} className="input is-small" type="number" placeholder='0' onChange={this.onChangeInput.bind(this, 'min')} />
+                            </LeftInput>
+                        </div>
+                    </div>
+                    <div className="column is-5">
+                        <div className="field">
+                            <RightInput className="control">
+                                <input value={newMax} className="input is-small" type="number" placeholder='100' onChange={this.onChangeInput.bind(this, 'max')}/>
+                            </RightInput>
                         </div>
                     </div>
                 </div>
-                <div className="column is-5">
-                    <div className="field">
-                        <div className="control">
-                            <input defaultValue={defaultMax} className="input is-small" type="text" placeholder='100'/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </Wrap>
-    );
+            </Wrap>
+        );
+    }
 }
 
 const Wrap = styled.div`
@@ -64,8 +89,24 @@ const Content = styled.div`
     }
 `;
 
-const LeftInput = styled.input`
-    text-align: right;
+const LeftInput = styled.div`
+    input {
+        text-align: right;
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+    }
+`;
+const RightInput = styled.div`
+    input {
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+    }
 `;
 
 const SpinText = styled.div`
@@ -73,4 +114,10 @@ const SpinText = styled.div`
 `;
 
 
-export default FiltersSlider;
+export default connect(
+    (state) => {
+        return {
+            filters: state.filters
+        }
+    }
+)(FiltersSlider);

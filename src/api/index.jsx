@@ -33,5 +33,26 @@ module.exports = {
         });
         console.log('rerender');
         return filteredCustomers;
+    },
+    fetchFormData(form) {
+        const usernamesQuery  = document.querySelectorAll('.customer');
+        let data              = {};
+        let usernamesArr      = [];
+
+        for ( let i=0; i < usernamesQuery.length; i++) {
+            usernamesArr.push(usernamesQuery[i].innerText);
+        }
+        data = {
+            message_1: form.messageOne.value,
+            message_2: form.messageTwo.value,
+            usernames: usernamesArr
+        }
+        return data;
+    },
+    storageExclusionsSet(arr) {
+        localStorage.setItem( 'exclusions', JSON.stringify(arr));
+    },
+    storageExcludeGet() {
+        return JSON.parse(localStorage.getItem('exclusions'));
     }
 }

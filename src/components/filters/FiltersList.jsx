@@ -4,19 +4,14 @@ import {connect} from 'react-redux';
 import styled from 'styled-components';
 
 import FiltersSlider from './FiltersSlider';
-import * as actions from '../../actions';
 
 export class FiltersList extends Component {
-    onChangeHandler(idx, e) {
-        const {dispatch} = this.props;
-        console.log(e[0], e[1], idx);
-        dispatch(actions.filterUpdate(e[0], e[1], idx));
-    }
+
     render() {
         const renderSliders = () => {
-            const { data, filters } = this.props;
+            const { data } = this.props;
             return data.map( (filter, idx) => {
-                return <FiltersSlider onChange={this.onChangeHandler.bind(this, idx)} key={idx} defaultMin={filters[idx].min} defaultMax={filters[idx].max} {...filter}/>
+                return <FiltersSlider key={idx} {...filter} id={idx}/>
             });
         }
         return (
@@ -52,8 +47,7 @@ const Control = styled.p`
 export default connect(
     (state)=> {
         return {
-            data: state.data.filters,
-            filters: state.filters
+            data: state.data.filters
         }
     }
 )(FiltersList);
