@@ -20,8 +20,8 @@ http.getData().then((response)=>{
 	store.dispatch(actions.getData(response));
 	
 	store.dispatch(actions.filtersSet(store.getState().data.filters));
-	store.dispatch(actions.exclusionsSet( pusherAPI.storageExclusionsGet() ));
-
+	// store.dispatch(actions.exclusionsSet( pusherAPI.storageExclusionsGet() ));
+	debugger;
 	ReactDOM.render(
 	    <Provider store={store}>
 	        {router}
