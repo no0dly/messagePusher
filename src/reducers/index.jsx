@@ -33,7 +33,7 @@ export const exclusionsReducer = (state = [], action) => {
 export const filtersReducer = (state = {}, action) => {
     switch (action.type) {
         case 'FILTERS_SET':
-            return action.filters;
+            return {...action.filters};
 
         case 'FILTERS_UPDATE':
             let newState = {...state};

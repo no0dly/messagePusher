@@ -9,11 +9,11 @@ module.exports = {
 
             xhr.onload = function(e) {
 
-            if (xhr.response.error) {
-                reject(new Error(xhr.response.error.message));
-            }
+                if (xhr.response.error) {
+                    reject(new Error(xhr.response.error.message));
+                }
 
-            resolve(JSON.parse(xhr.response));
+                resolve(JSON.parse(xhr.response));
             };
             xhr.send(JSON.stringify(data));
         })
@@ -26,13 +26,13 @@ module.exports = {
 
             xhr.onload = function(e) {
 
-            if (xhr.response.error) {
-                reject(new Error(xhr.response.error.message));
-            }
+                if (xhr.response.error) {
+                    reject(new Error(xhr.response.error.message));
+                }
 
-            resolve(JSON.parse(xhr.response));
+                resolve(JSON.parse(xhr.response));
             };
             xhr.send();
-        })
+        });
     }
 };

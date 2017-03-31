@@ -70,12 +70,13 @@ export const filterUpdateMax = (max, id) => {
     }
 }
 
-export const startGetData = () => {
-    return (dispatch, getState) => {
-        return http.getData().then((data)=>{
-        	dispatch( getData(data) );
-            dispatch( filtersSet(data.filters) );
-            dispatch( exclusionsSet( pusherAPI.storageExclusionsGet() ));
-        });
-    }
-}
+// export const startGetData = () => {
+//     return (dispatch, getState) => {
+//         return http.getData().then((data)=>{
+//             debugger;
+//         	dispatch( getData(data) );
+//             dispatch( filtersSet(data.filters) );
+//             dispatch( exclusionsSet( pusherAPI.storageExclusionsGet() ));
+//         });
+//     }
+// }
