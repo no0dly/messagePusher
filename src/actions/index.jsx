@@ -1,6 +1,3 @@
-import http         from '../api/http';
-import pusherAPI 	from '../api';
-
 export const getData = (data) => {
     return {
         type: 'GET_DATA',
