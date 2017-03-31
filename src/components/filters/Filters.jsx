@@ -7,15 +7,19 @@ export class Filters extends Component {
 
     render() {
         return (
-            <div>
+            <Wrap>
                 <Title className='title is-5'>
                     Filters
                 </Title>
                 <FiltersList/>
-            </div>
+            </Wrap>
         )
     }
 }
+
+const Wrap = styled.div`
+    padding-right: 0.75rem;
+`;
 
 const Title = styled.h2`
     text-align: center;

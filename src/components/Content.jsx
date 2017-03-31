@@ -20,10 +20,14 @@ export class Content extends Component {
                         </Scrollbars>
                     </WrapFilters>
                     <WrapCustomers className="column is-half">
-                        <Customers/>
+                        <Scrollbars autoHide={true}>
+                            <Customers/>
+                        </Scrollbars>
                     </WrapCustomers>
                     <WrapExclusion className="column is-one-quarter">
-                        <Exclusion/>
+                        <Scrollbars autoHide={true}>
+                            <Exclusion/>
+                        </Scrollbars>
                     </WrapExclusion>
                 </WrapContent>
 
@@ -46,6 +50,9 @@ const WrapContent = styled.div`
     height: calc(75vh - 40px);
     padding-left: 12px;
     padding-right: 12px;
+    .column {
+        padding-right: 0;
+    }
 `;
 
 const WrapForm = styled.div`
@@ -54,7 +61,6 @@ const WrapForm = styled.div`
 
 const WrapFilters = styled.div`
     border: 1px solid #333;
-    padding-right: 0!important;
 `;
 
 const WrapCustomers = styled.div`
