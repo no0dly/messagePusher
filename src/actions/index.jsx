@@ -1,8 +1,5 @@
-// export const startGetData (data) => {
-//     return (dispatch, getState) => {
-//
-//     }
-// }
+import http         from '../api/http';
+import pusherAPI 	from '../api';
 
 export const getData = (data) => {
     return {
@@ -34,6 +31,13 @@ export const exclusionRemove = (username) => {
     }
 }
 
+export const exclusionsSet = (exclusions) => {
+    return {
+        type: 'EXCLUSION_SET',
+        exclusions
+    }
+}
+
 export const filtersSet = (filters) => {
     return {
         type: 'FILTERS_SET',
@@ -41,27 +45,37 @@ export const filtersSet = (filters) => {
     }
 }
 
-export const filterUpdate = (min, max, idx) => {
+export const filterUpdate = (min, max, id) => {
     return {
         type: 'FILTERS_UPDATE',
         min,
         max,
-        idx
+        id
     }
 }
 
-export const filterUpdateMin = (min, idx) => {
+export const filterUpdateMin = (min, id) => {
     return {
         type: 'FILTERS_UPDATE_MIN',
         min,
-        idx
+        id
     }
 }
 
-export const filterUpdateMax = ( max, idx) => {
+export const filterUpdateMax = (max, id) => {
     return {
         type: 'FILTERS_UPDATE_MAX',
         max,
-        idx
+        id
+    }
+}
+
+export const startGetData = () => {
+    return (dispatch, getState) => {
+        return http.getData().then((data)=>{
+        	dispatch( getData(data) );
+            dispatch( filtersSet(data.filters) );
+            dispatch( exclusionsSet( pusherAPI.storageExclusionsGet() ));
+        });
     }
 }

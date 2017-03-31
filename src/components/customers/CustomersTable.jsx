@@ -10,10 +10,9 @@ import pusherAPI from '../../api';
 export class CustomersTable extends Component {
     onClickHandler(username, e) {
         e.preventDefault();
-        const { dispatch, exclusions } = this.props;
+        const { dispatch } = this.props;
 
         dispatch(actions.exclusionAdd(username));
-
     }
 
     componentDidUpdate() {

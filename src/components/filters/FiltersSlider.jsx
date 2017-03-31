@@ -15,7 +15,6 @@ const Range = createSliderWithTooltip(Slider.Range);
 export class FiltersSlider extends Component {
     onChange(e) {
         const {dispatch, id} = this.props;
-
         dispatch(actions.filterUpdate(e[0], e[1], id));
     }
     onChangeInput(input, e) {

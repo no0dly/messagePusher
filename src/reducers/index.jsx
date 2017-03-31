@@ -1,4 +1,4 @@
-export const dataReducer = (state={}, action) => {
+export const dataReducer = (state = {}, action) => {
     switch (action.type) {
         case 'GET_DATA':
             return action.data;
@@ -9,8 +9,13 @@ export const dataReducer = (state={}, action) => {
 
 }
 
-export const exclusionsReducer = (state=[], action) => {
+export const exclusionsReducer = (state = [], action) => {
     switch (action.type) {
+        case 'EXCLUSION_SET':
+            return [
+                ...state,
+                ...action.exclusions
+            ];
         case 'EXCLUSION_ADD':
             return [
                 ...state,
@@ -25,26 +30,27 @@ export const exclusionsReducer = (state=[], action) => {
 }
 
 
-export const filtersReducer = (state={}, action) => {
+export const filtersReducer = (state = {}, action) => {
     switch (action.type) {
         case 'FILTERS_SET':
             return action.filters;
+
         case 'FILTERS_UPDATE':
-            let newState = [...state];
-            newState[action.idx].min = action.min;
-            newState[action.idx].max = action.max;
+            let newState = {...state};
+            newState[action.id].min = action.min;
+            newState[action.id].max = action.max;
 
             return newState;
 
         case 'FILTERS_UPDATE_MIN':
-            let newStateMin = [...state];
-            newStateMin[action.idx].min = action.min;
+            let newStateMin = {...state};
+            newStateMin[action.id].min = action.min;
 
             return newStateMin;
 
         case 'FILTERS_UPDATE_MAX':
-            let newStateMax = [...state];
-            newStateMax[action.idx].max = action.max;
+            let newStateMax = {...state};
+            newStateMax[action.id].max = action.max;
 
             return newStateMax;
 

@@ -5,12 +5,21 @@ import styled from 'styled-components';
 
 import FormMessage from './FormMessage';
 import pusherAPI from '../../api';
+import http from '../../api/http';
+
 
 export class Form extends Component {
     onSubmit(e) {
         e.preventDefault();
 
         console.log(pusherAPI.fetchFormData(this.form));
+        http.sendData( pusherAPI.fetchFormData(this.form) )
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     render() {

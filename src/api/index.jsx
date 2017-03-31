@@ -1,5 +1,5 @@
 module.exports = {
-    filter(customers, exclusionArr, filtersArr) {
+    filter(customers, exclusionArr, filtersObj) {
         let filteredCustomers = customers;
 
         filteredCustomers = filteredCustomers.filter( (customer) => {
@@ -8,30 +8,25 @@ module.exports = {
                 if (customer.username.indexOf(exclusion) !== -1 ) {
                     unmatched = false;
                 }
+                return true;
             });
 
             return unmatched;
         });
 
         filteredCustomers = filteredCustomers.filter( (customer) =>{
-            if ( customer.days_since_first_trade < filtersArr[0].min || customer.days_since_first_trade > filtersArr[0].max ) {
-                return false;
+
+
+            for( let filter in customer ) {
+                if (filter === "username") {continue};
+
+                if ( customer[filter] < filtersObj[filter].min || customer[filter] > filtersObj[filter].max ) {
+                    return false;
+                }
             }
-            if ( customer.days_since_last_trade < filtersArr[1].min || customer.days_since_last_trade > filtersArr[1].max ) {
-                return false;
-            }
-            if ( customer.number_of_recent_trades < filtersArr[2].min || customer.number_of_recent_trades > filtersArr[2].max ) {
-                return false;
-            }
-            if ( customer.average_amount_a < filtersArr[3].min || customer.average_amount_a > filtersArr[3].max ) {
-                return false;
-            }
-            if ( customer.average_amount_b < filtersArr[4].min || customer.average_amount_b > filtersArr[4].max ) {
-                return false;
-            }
+
             return true;
         });
-        console.log('rerender');
         return filteredCustomers;
     },
     fetchFormData(form) {
@@ -52,7 +47,7 @@ module.exports = {
     storageExclusionsSet(arr) {
         localStorage.setItem( 'exclusions', JSON.stringify(arr));
     },
-    storageExcludeGet() {
+    storageExclusionsGet() {
         return JSON.parse(localStorage.getItem('exclusions'));
     }
 }

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import ExclusionItem from './ExclusionItem';
 import * as actions from '../../actions';
+import pusherAPI from '../../api';
 
 export class ExclusionTable extends Component {
     onClickHandler(username, e) {
@@ -12,6 +13,11 @@ export class ExclusionTable extends Component {
         const { dispatch } = this.props;
 
         dispatch(actions.exclusionRemove(username));
+    }
+
+    componentDidUpdate() {
+        const { exclusions } = this.props;
+        pusherAPI.storageExclusionsSet(exclusions);
     }
     render() {
         const renderExclusion = () => {

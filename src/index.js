@@ -1,10 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import React 		from 'react';
+import ReactDOM 	from 'react-dom';
+import {Provider} 	from 'react-redux';
 
 import * as actions from './actions';
 
-import router from './router';
+import pusherAPI 	from './api';
+
+import router 		from './router';
 
 import 'reset-css';
 import 'bulma/css/bulma.css';
@@ -31,40 +33,69 @@ const data = {
 		}
 	],
 	"customers_count": 2,
-	"filters": [
-		{
-            "title": "Days Since first trade",
-			"min": 0,
-			"max": 70
-		},
-		{
-            "title": "Days Since first trade",
-			"min": 0,
-			"max": 11
-		},
-		{
-            "title": "Number of trades within last 30 days",
-			"min": 0,
-			"max": 12
-		},
-		{
-            "title": "Average trade amount A",
-			"min": 0,
-			"max": 800
-		},
-		{
-            "title": "Average trade amount B",
-			"min": 0,
-			"max": 500
-		}
-	],
+	// "filters": [
+	// 	{
+    //         "title": "Days Since first trade",
+	// 		"min": 0,
+	// 		"max": 70
+	// 	},
+	// 	{
+    //         "title": "Days Since first trade",
+	// 		"min": 0,
+	// 		"max": 11
+	// 	},
+	// 	{
+    //         "title": "Number of trades within last 30 days",
+	// 		"min": 0,
+	// 		"max": 12
+	// 	},
+	// 	{
+    //         "title": "Average trade amount A",
+	// 		"min": 0,
+	// 		"max": 800
+	// 	},
+	// 	{
+    //         "title": "Average trade amount B",
+	// 		"min": 0,
+	// 		"max": 500
+	// 	}
+	// ],
+	"filters": {
+	    'days_since_first_trade': {
+	      'title': 'Days since first trade',
+	      'min': 0,
+	      'max': 70
+	    },
+	    'days_since_last_trade': {
+	      'title': 'Days since last trade',
+	      'min': 0,
+	      'max': 11
+	    },
+	    'number_of_recent_trades': {
+	      'title': 'Number of recent trades',
+	      'min': 0,
+	      'max': 12
+	    },
+	    'average_amount_a': {
+	      'title': 'Average amount A',
+	      'min': 0,
+	      'max': 800
+	    },
+	    'average_amount_b': {
+	      'title': 'Average amount B',
+	      'min': 0,
+	      'max': 500
+	    }
+	},
 	"message_1": "Hello, dear customer! If you need to make a trade today, don't forget about me ;)",
 	"message_2": "Just open a new trade with me whenever you need. You can also contact me personally, check my contacts in my profile."
 }
 
 store.dispatch(actions.getData(data));
-
 store.dispatch(actions.filtersSet(store.getState().data.filters));
+store.dispatch(actions.exclusionsSet( pusherAPI.storageExclusionsGet() ));
+
+// store.dispatch(actions.startGetData());
 
 ReactDOM.render(
     <Provider store={store}>
