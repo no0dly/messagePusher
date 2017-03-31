@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import Filters      from './filters/Filters';
 import Customers    from './customers/Customers';
@@ -13,7 +14,10 @@ export class Content extends Component {
             <Wrap>
                 <WrapContent className="columns">
                     <WrapFilters className="column is-one-quarter">
-                        <Filters/>
+                        <Scrollbars autoHide={true}
+                            renderTrackHorizontal={props => <div {...props} className="track-horizontal" style={{display:"none"}}/>}>
+                            <Filters/>
+                        </Scrollbars>
                     </WrapFilters>
                     <WrapCustomers className="column is-half">
                         <Customers/>
@@ -50,6 +54,7 @@ const WrapForm = styled.div`
 
 const WrapFilters = styled.div`
     border: 1px solid #333;
+    padding-right: 0!important;
 `;
 
 const WrapCustomers = styled.div`
