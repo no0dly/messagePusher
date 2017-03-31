@@ -16,12 +16,9 @@ const store = require('./store/configureStore').configure();
 
 
 http.getData().then((response)=>{
-	debugger;
 	store.dispatch(actions.getData(response));
-	
 	store.dispatch(actions.filtersSet(store.getState().data.filters));
-	// store.dispatch(actions.exclusionsSet( pusherAPI.storageExclusionsGet() ));
-	debugger;
+	store.dispatch(actions.exclusionsSet( pusherAPI.storageExclusionsGet() ));
 	ReactDOM.render(
 	    <Provider store={store}>
 	        {router}

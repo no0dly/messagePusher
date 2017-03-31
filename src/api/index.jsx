@@ -48,6 +48,10 @@ module.exports = {
         localStorage.setItem( 'exclusions', JSON.stringify(arr));
     },
     storageExclusionsGet() {
-        return JSON.parse(localStorage.getItem('exclusions'));
+        const exclusionsArr = JSON.parse(localStorage.getItem('exclusions'));
+ 
+        if(JSON.parse(localStorage.getItem('exclusions')) == null) return [];
+
+        return exclusionsArr;
     }
 }
