@@ -41,17 +41,6 @@ export class CustomersTable extends Component {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Username</th>
-                            <th>Days since first trade</th>
-                            <th>Days since last trade</th>
-                            <th># of trades in last 30 days</th>
-                            <th>Average amount A</th>
-                            <th>Average amount B</th>
-                            <th>Actions</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         {renderCustomer()}
                   </tbody>

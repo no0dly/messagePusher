@@ -8,7 +8,7 @@ export class Exclusion extends Component {
         return (
             <Wrap>
                 <Title className="title is-5">
-                    Exclusion
+                    Exclusions
                 </Title>
                 <ExclusionTable/>
             </Wrap>

@@ -35,12 +35,6 @@ export class ExclusionTable extends Component {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Username</th>
-                            <th>Actions</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         {renderExclusion()}
                   </tbody>

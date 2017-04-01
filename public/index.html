@@ -4,28 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <!--
-      Notice the use of %PUBLIC_URL% in the tag above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <title>React App</title>
   </head>
   <body>
-    <div id="root">Loading....</div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start`.
-      To create a production bundle, use `npm run build`.
-    -->
+    <div id="root">
+      <div style="background: none repeat scroll 0 0 #000;	bottom: 0; height: 100%; left: 0; position: fixed; right: 0; top: 0;width: 100%; z-index: 9999;">
+        <div style="background-image: url('loader.gif'); background-repeat: no-repeat; background-position: center center; background-size: cover; background-color: #fff; height: 460px; width: 460px; margin-top: -230px; margin-left: -230px; left: 50%; top: 50%; position: absolute;"></div>
+      </div>
+    </div>
   </body>
 </html>
