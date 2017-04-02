@@ -17,11 +17,21 @@ export class FiltersSlider extends Component {
         const {dispatch, id} = this.props;
         dispatch(actions.filterUpdate(e[0], e[1], id));
     }
+
+    onKeyDown(e) {
+        if( e.which >=37 && e.which <=40) {
+            e.preventDefault();
+        }
+        if ( e.which === 69 || e.which === 189 ) {
+            e.preventDefault();
+        }
+    }
+
     onChangeInput(input, e) {
         const {dispatch, id} = this.props;
 
         const value = parseInt(e.target.value);
-
+        if (e.target.value.length === 0 ) return false;
         if(input === 'min') {
             dispatch(actions.filterUpdateMin( value, id));
         } else {
@@ -53,7 +63,7 @@ export class FiltersSlider extends Component {
                     <div className="column is-5 is-offset-1">
                         <div className="field">
                             <LeftInput className="control">
-                                <input value={newMin} className="input is-small" type="number" placeholder='0' onChange={this.onChangeInput.bind(this, 'min')} />
+                                <input value={newMin} className="input is-small" type="number" placeholder='0' onChange={this.onChangeInput.bind(this, 'min')} onKeyDown={this.onKeyDown.bind(this)} />
                             </LeftInput>
                         </div>
                     </div>
