@@ -1,19 +1,17 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import CustomersTable from './CustomersTable';
 
-export class Customers extends Component {
-    render() {
-        return (
-            <Wrap>
-                <Title className="title is-5">
-                    Customers
-                </Title>
-                <CustomersTable/>
-            </Wrap>
-        )
-    }
+const Customers = (props) => {
+    return (
+        <Wrap>
+            <Title className="title is-5">
+                Customers
+            </Title>
+            <CustomersTable/>
+        </Wrap>
+    )
 }
 
 const Wrap = styled.div`

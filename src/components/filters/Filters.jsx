@@ -1,20 +1,17 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import FiltersList from './FiltersList';
 
-export class Filters extends Component {
-
-    render() {
-        return (
-            <Wrap>
-                <Title className='title is-5'>
-                    Filters
-                </Title>
-                <FiltersList/>
-            </Wrap>
-        )
-    }
+const Filters = () => {
+    return (
+        <Wrap>
+            <Title className='title is-5'>
+                Filters
+            </Title>
+            <FiltersList/>
+        </Wrap>
+    )
 }
 
 const Wrap = styled.div`

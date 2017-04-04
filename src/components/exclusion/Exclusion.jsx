@@ -1,19 +1,17 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import ExclusionTable from './ExclusionTable';
 
-export class Exclusion extends Component {
-    render() {
-        return (
-            <Wrap>
-                <Title className="title is-5">
-                    Exclusions
-                </Title>
-                <ExclusionTable/>
-            </Wrap>
-        )
-    }
+const Exclusion = (props) => {
+    return (
+        <Wrap>
+            <Title className="title is-5">
+                Exclusions
+            </Title>
+            <ExclusionTable/>
+        </Wrap>
+    )
 }
 
 const Wrap = styled.div`

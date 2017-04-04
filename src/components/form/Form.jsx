@@ -50,7 +50,6 @@ export class Form extends Component {
         const renderNotification = () => {
             if ( showPopup ) {
                 if( popupText ) {
-                    debugger;
                     return (
                         <NotifWrap>
                             <div className="notification is-success">
