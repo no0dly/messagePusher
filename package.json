@@ -2,6 +2,7 @@
   "name": "message-pusher",
   "version": "0.0.1",
   "private": true,
+  "homepage": ".",
   "devDependencies": {
     "react-scripts": "0.9.5"
   },
