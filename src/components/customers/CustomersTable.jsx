@@ -35,7 +35,7 @@ export class CustomersTable extends Component {
                             <th>Username</th>
                             <th>Days since first trade</th>
                             <th>Days since last trade</th>
-                            <th># of trades in last 30 days</th>
+                            <th>Number of recent trades</th>
                             <th>Average amount A</th>
                             <th>Average amount B</th>
                             <th>Actions</th>

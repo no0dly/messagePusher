@@ -49,9 +49,20 @@ module.exports = {
     },
     storageExclusionsGet() {
         const exclusionsArr = JSON.parse(localStorage.getItem('exclusions'));
- 
+
         if(JSON.parse(localStorage.getItem('exclusions')) == null) return [];
 
         return exclusionsArr;
+    },
+    sortFilters(filtersArr) {
+        let sortedFilters = [];
+        Object.keys(filtersArr).map((value)=>{
+        	sortedFilters.push([value,filtersArr[value].order]);
+        });
+        sortedFilters.sort(function(a, b) {
+            return a[1] - b[1];
+        });
+
+        return sortedFilters;
     }
 }

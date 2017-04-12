@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-// import styled from 'styled-components';
-
 import FiltersSlider from './FiltersSlider';
+
+import pusherAPI from '../../api';
 
 export class FiltersList extends Component {
 
@@ -11,8 +11,8 @@ export class FiltersList extends Component {
         const renderSliders = () => {
             const { filters } = this.props;
 
-            return Object.keys(filters).map( (filter, idx) => {
-                return <FiltersSlider key={idx} {...filters[filter]} id={filter}/>
+            return pusherAPI.sortFilters(filters).map( (filterArr, idx) => {
+                return <FiltersSlider key={idx} {...filters[filterArr[0]]} id = {filterArr[0]}/>
             });
         }
         return (
