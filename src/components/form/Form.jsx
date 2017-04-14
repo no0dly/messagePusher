@@ -75,7 +75,7 @@ export class Form extends Component {
 
         const renderButton = () => {
             return (
-                <input className={ (!loading) ? "button is-primary is-large" : "button is-primary is-large is-loading is-disabled" } type="submit" value="Submit"/>
+                <input className={ (!loading) ? "button is-primary is-large" : "button is-primary is-large is-loading is-disabled" } type="submit" value="Send"/>
             )
         }
 

@@ -6,6 +6,7 @@ module.exports = {
             var xhr  = new XMLHttpRequest();
 
             xhr.open( 'POST', `${URL}/send` );
+            xhr.setRequestHeader('Content-Type', 'application/json');
 
             xhr.onload = function(e) {
 
