@@ -84,10 +84,10 @@ export class Form extends Component {
             <form ref={(form) => this.form = form} action="#" onSubmit={this.onSubmit.bind(this)}>
                 <Wrap className="columns">
                     <div className="column is-5">
-                        <FormMessage id="messageOne" title="message 1" text={messageOne}/>
+                        <FormMessage id="messageOne" title="Message 1" text={messageOne}/>
                     </div>
                     <div className="column is-5">
-                        <FormMessage id="messageTwo" title="message 2" text={messageTwo}/>
+                        <FormMessage id="messageTwo" title="Message 2" text={messageTwo}/>
                     </div>
                     <div className="column is-2">
                         {renderButton()}

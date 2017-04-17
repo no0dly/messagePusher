@@ -3,11 +3,9 @@ import React from 'react';
 const Nav = (props) => {
     return (
         <nav>
-            <div className="nav-left">
-                <a href="/" className="nav-item">
-                    Message Pusher
-                </a>
-            </div>
+            <span className="nav-item">
+                Message Pusher
+            </span>
         </nav>
     )
 }
