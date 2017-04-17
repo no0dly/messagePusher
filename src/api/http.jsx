@@ -1,4 +1,6 @@
-const URL = "http://192.241.139.126:8080"
+import config from '../config';
+
+const URL = config.apiUrl;
 
 module.exports = {
     sendData(data) {

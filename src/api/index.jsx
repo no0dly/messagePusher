@@ -16,10 +16,9 @@ module.exports = {
 
         filteredCustomers = filteredCustomers.filter( (customer) =>{
 
-
             for( let filter in customer ) {
                 if (filter === "username") {continue};
-
+                if (!filtersObj[filter]) { return true }
                 if ( customer[filter] < filtersObj[filter].min || customer[filter] > filtersObj[filter].max ) {
                     return false;
                 }
@@ -64,10 +63,22 @@ module.exports = {
 
         return filters;
     },
+    combinedFilters(filtersFromResponse, filtersFromStorage) {
+        let combinedFilters = JSON.parse(JSON.stringify(filtersFromResponse));
+        if( !filtersFromStorage ) { return filtersFromResponse }
+        for( let filter in combinedFilters ) {
+            if ( filtersFromStorage[filter] ) {
+                combinedFilters[filter].max = filtersFromStorage[filter].max;
+                combinedFilters[filter].min = filtersFromStorage[filter].min;
+            }
+        }
+        return combinedFilters;
+    },
     sortFilters(filtersArr) {
         let sortedFilters = [];
         Object.keys(filtersArr).map((value)=>{
         	sortedFilters.push([value,filtersArr[value].order]);
+            return true;
         });
         sortedFilters.sort(function(a, b) {
             return a[1] - b[1];

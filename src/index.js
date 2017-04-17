@@ -19,12 +19,7 @@ http.getData().then((response)=>{
 	store.dispatch(actions.getData(response));
 	store.dispatch(actions.exclusionsSet( pusherAPI.storageExclusionsGet() ));
 
-	if( !pusherAPI.storageFiltersGet() ) {
-		store.dispatch(actions.filtersSet(store.getState().data.filters));
-	} else {
-		store.dispatch(actions.filtersSet(pusherAPI.storageFiltersGet()));
-	}
-
+	store.dispatch(actions.filtersSet(pusherAPI.combinedFilters(store.getState().data.filters, pusherAPI.storageFiltersGet() )));
 	ReactDOM.render(
 	    <Provider store={store}>
 	        {router}

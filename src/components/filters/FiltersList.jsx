@@ -12,7 +12,7 @@ export class FiltersList extends Component {
             const { filters } = this.props;
 
             return pusherAPI.sortFilters(filters).map( (filterArr, idx) => {
-                return <FiltersSlider key={idx} {...filters[filterArr[0]]} id = {filterArr[0]}/>
+                return <FiltersSlider key={idx} {...filters[filterArr[0]]} id={filterArr[0]}/>
             });
         }
         return (
@@ -24,7 +24,7 @@ export class FiltersList extends Component {
 }
 
 export default connect(
-    (state)=> {
+    (state) => {
         return {
             filters: state.data.filters
         }
