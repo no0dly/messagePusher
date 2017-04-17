@@ -50,9 +50,19 @@ module.exports = {
     storageExclusionsGet() {
         const exclusionsArr = JSON.parse(localStorage.getItem('exclusions'));
 
-        if(JSON.parse(localStorage.getItem('exclusions')) == null) return [];
+        if( exclusionsArr == null) return [];
 
         return exclusionsArr;
+    },
+    storageFiltersSet(obj) {
+        localStorage.setItem( 'filters', JSON.stringify(obj));
+    },
+    storageFiltersGet() {
+        const filters = JSON.parse(localStorage.getItem('filters'));
+
+        if( filters == null) return false;
+
+        return filters;
     },
     sortFilters(filtersArr) {
         let sortedFilters = [];

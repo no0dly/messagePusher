@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import Slider from 'rc-slider';
 import * as actions from '../../actions';
+import pusherAPI from '../../api';
 
 import 'rc-slider/assets/index.css';
 
@@ -14,8 +15,9 @@ const Range = createSliderWithTooltip(Slider.Range);
 
 export class FiltersSlider extends Component {
     onChange(e) {
-        const {dispatch, id} = this.props;
+        const {dispatch, id, filters} = this.props;
         dispatch(actions.filterUpdate(e[0], e[1], id));
+        pusherAPI.storageFiltersSet(filters);
     }
 
     onKeyDown(e) {
@@ -28,7 +30,7 @@ export class FiltersSlider extends Component {
     }
 
     onChangeInput(input, e) {
-        const {dispatch, id} = this.props;
+        const {dispatch, id, filters} = this.props;
 
         const value = parseInt(e.target.value);
         if (e.target.value.length === 0 ) return false;
@@ -37,7 +39,7 @@ export class FiltersSlider extends Component {
         } else {
             dispatch(actions.filterUpdateMax( value, id));
         }
-
+        pusherAPI.storageFiltersSet(filters);
     }
 
     render() {
