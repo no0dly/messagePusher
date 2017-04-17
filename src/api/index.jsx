@@ -18,7 +18,7 @@ module.exports = {
 
             for( let filter in customer ) {
                 if (filter === "username") {continue};
-                if (!filtersObj[filter]) { return true }
+                if (!filtersObj[filter]) { continue }
                 if ( customer[filter] < filtersObj[filter].min || customer[filter] > filtersObj[filter].max ) {
                     return false;
                 }
